@@ -26,7 +26,7 @@
 				<td>${member.hp}</td>
 				<td>${member.pos}</td>
 				<td>${member.dep}</td>
-				<td>${member.rdate}</td>
+				<td>${member.rdate.substring(2, 10)}</td>
 				<td>
 					<a href="/ch08/member/modify?uid=${member.uid}">수정</a>
 					<a href="/ch08/member/delete?uid=${member.uid}">삭제</a>

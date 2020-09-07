@@ -5,19 +5,28 @@
 <mapper namespace="mapper.member">
 
 	<insert id="INSERT_MEMBER">
+		INSERT INTO `MEMBER` VALUES (#{uid}, #{name}, #{hp}, #{pos}, #{dep}, NOW());
 	</insert>
 	
 	<select id="SELECT_MEMBER" resultType="kr.co.ch08.vo.MemberVO">
+		SELECT * FROM `MEMBER` WHERE `uid`=#{uid};
 	</select>
 	
-	<select id="SELECT_MEMBERs" resultType="kr.co.ch08.vo.MemberVO">
+	<select id="SELECT_MEMBERS" resultType="kr.co.ch08.vo.MemberVO">
+		SELECT * FROM `MEMBER`;
 	</select>
 	
 	<update id="UPDATE_MEMBER">
+		UPDATE `MEMBER` SET
+		`name`=#{name},
+		`hp`=#{hp},
+		`pos`=#{pos},
+		`dep`=#{dep}
+		WHERE `uid`=#{uid};
 	</update>
 	
 	<delete id="DELETE_MEMBER">
-
+		DELETE FROM `MEMBER` WHERE `uid`=#{uid};
 	</delete>
 
 </mapper>

@@ -19,17 +19,17 @@
 			<th>입사일</th>
 			<th>관리</th>
 		</tr>
-		<c:forEach var="user" items="${users}">
+		<c:forEach var="member" items="${members}">
 			<tr>
-				<td>${user.uid}</td>
-				<td>${user.name}</td>
-				<td>${user.hp}</td>
-				<td>${user.pos}</td>
-				<td>${user.dep}</td>
-				<td>${user.rdate}</td>
+				<td>${member.uid}</td>
+				<td>${member.name}</td>
+				<td>${member.hp}</td>
+				<td>${member.pos}</td>
+				<td>${member.dep}</td>
+				<td>${member.rdate}</td>
 				<td>
-					<a href="/ch08/member/modify?uid=${user.uid}">수정</a>
-					<a href="/ch08/member/delete?uid=${user.uid}">삭제</a>
+					<a href="/ch08/member/modify?uid=${member.uid}">수정</a>
+					<a href="/ch08/member/delete?uid=${member.uid}">삭제</a>
 				</td>
 			</tr>
 		</c:forEach>

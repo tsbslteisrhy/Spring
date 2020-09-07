@@ -1,4 +1,4 @@
-package kr.co.ch07.controller;
+package kr.co.ch08.controller;
 
 import java.util.List;
 
@@ -6,27 +6,25 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.ch07.service.UserService;
-import kr.co.ch07.vo.UserVO;
+import kr.co.ch08.service.UserService;
+import kr.co.ch08.vo.UserVO;
 
 @Controller
 public class UserController {
 	
 	@Inject
 	private UserService service;
-	
-	@RequestMapping(value="/user/register", method=RequestMethod.GET)
+
+	@RequestMapping("/user/register")
 	public String register() {
-		return "user/register";
+		return "/user/register";
 	}
 	
 	@RequestMapping(value="/user/register", method=RequestMethod.POST)
-	public String registerProc(UserVO vo) {
+	public String register(UserVO vo) {
 		service.insertUser(vo);
 		
 		return "redirect:/user/list";
@@ -35,15 +33,29 @@ public class UserController {
 	@RequestMapping("/user/list")
 	public String list(Model model) {
 		List<UserVO> users = service.selectUsers();
-		
-		// view에서 참조하기 위한 model 추가
 		model.addAttribute("users", users);
 		
-		return "user/list";
+		return "/user/list";
 	}
 	
-	@RequestMapping(value="/user/delete", method = {RequestMethod.GET, RequestMethod.POST})
-	public String delete(@RequestParam("uid") String uid) {
+	@RequestMapping("/user/modify")
+	public String modify(String uid, Model model) {
+		UserVO user = service.selectUser(uid);
+		model.addAttribute("user", user);
+		
+		return "/user/modify";
+	}
+	
+	@RequestMapping(value="/user/modify", method=RequestMethod.POST)
+	public String modify(UserVO vo) {
+		
+		service.updateUser(vo);
+		
+		return "redirect:/user/list";
+	}
+	
+	@RequestMapping("/user/delete")
+	public String delete(String uid) {
 		service.deleteUser(uid);
 		
 		return "redirect:/user/list";

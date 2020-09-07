@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import kr.co.ch07.vo.UserVO;
 
@@ -33,8 +34,8 @@ public class UserDao {
 	
 	public void updateUser() {}
 	
-//	public void deleteUser(List<UserVO> users) {
-//		jdbc.update("DELETE FROM `MEMBER` WHERE 'uid'=?", users.get(3).getUid());
-//	}
+	public void deleteUser(String uid) {
+		jdbc.update("DELETE FROM `MEMBER` WHERE 'uid'=?", uid);
+	}
 	
 }

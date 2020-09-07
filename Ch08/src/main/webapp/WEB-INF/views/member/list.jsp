@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>user-list</title>
+	<title>list</title>
 </head>
 <body>
 	<h3>직원 목록</h3>
@@ -28,8 +28,8 @@
 				<td>${user.dep}</td>
 				<td>${user.rdate}</td>
 				<td>
-					<a href="/ch07/user/modify?uid=${user.uid}">수정</a>
-					<a href="/ch07/user/delete?uid=${user.uid}">삭제</a>
+					<a href="/ch08/member/modify?uid=${user.uid}">수정</a>
+					<a href="/ch08/member/delete?uid=${user.uid}">삭제</a>
 				</td>
 			</tr>
 		</c:forEach>

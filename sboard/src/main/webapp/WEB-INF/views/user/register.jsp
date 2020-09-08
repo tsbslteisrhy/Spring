@@ -6,32 +6,7 @@
     <title>회원가입</title>
     <link rel="stylesheet" href="/sboard/css/style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-		$(function(){
-			$('input[name=uid]').focusout(function(){
-
-				var uid = $(this).val();
-				var json = {'uid': uid};
-				
-				$.ajax({
-					url: '/sboard/user/uidCheck',
-					type: 'get',
-					data: json,
-					dataType: 'json',
-					success: function(data){
-
-						if(data.result == 0){
-							$('.resultId').css('color', 'green').text('사용할 수 있는 아이디 입니다.');
-						}else{
-							$('.resultId').css('color', 'red').text('사용할 수 없는 아이디 입니다.');
-						}
-						
-					}
-				});
-				
-			});
-		});
-    </script>
+    <script src="/sboard/js/checkUid.js"></script>
 </head>
 <body>
     <div id="wrapper">

@@ -22,17 +22,19 @@
 			`regip`=#{regip}, 		
 			`rdate`=NOW();		
 	</insert>
-	
+
 	<select id="SELECT_USER_COUNT" resultType="int">
 		SELECT COUNT(*) FROM `JBOARD_MEMBER`
 		WHERE `uid`=#{uid};
 	</select>
-
-	<!-- 
-	<select id="SELECT_USERS">
-		SELECT * FROM `USER3`;
+	
+	<select id="SELECT_USER" resultType="kr.co.sboard.vo.UserVO">
+		SELECT * FROM `JBOARD_MEMBER`
+		WHERE `uid`=#{uid} AND `PASS`=PASSWORD(#{pass});
 	</select>
 	
+
+	<!-- 
 	<update id="UPDATE_USER">
 		UPDATE `USER3` SET		
 		`name`=#{name},

@@ -9,7 +9,7 @@
 <body>
     <div id="wrapper">
         <section id="user" class="login">
-            <form action="../list.html">
+            <form action="/sboard/user/login" method="post">
                 <table border="0">
                     <tr>
                         <td><img src="/sboard/img/login_ico_id.png" alt="아이디"/></td>

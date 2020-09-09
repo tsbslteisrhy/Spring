@@ -14,7 +14,10 @@ public class UserDao {
 	@Inject
 	private SqlSessionTemplate mybatis;
 	
-	public void selectUser() {}
+	public UserVO selectUser(UserVO vo) {
+		return mybatis.selectOne("mapper.user.SELECT_USER", vo);
+	}
+	
 	public void selectUsers() {}
 	
 	public void insertUser(UserVO vo) {

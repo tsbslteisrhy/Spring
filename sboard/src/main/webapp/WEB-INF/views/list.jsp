@@ -27,7 +27,7 @@
                     <c:forEach var="article" items="${articles}">
                     <tr>
                         <td>${count = count-1}</td>
-                        <td><a href="/sboard/view">${article.title}</a>&nbsp;[${article.comment}]</td>
+                        <td><a href="/sboard/view?seq=${article.seq}">${article.title}</a>&nbsp;[${article.comment}]</td>
                         <td>${article.nick}</td>
                         <td>${article.rdate.substring(2, 10)}</td>
                         <td>${article.hit}</td>

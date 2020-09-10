@@ -173,6 +173,13 @@
 		    <version>1.16</version>
 		</dependency>
 		
+		<!-- 추가 필수 라이브러리 10 : fileupload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

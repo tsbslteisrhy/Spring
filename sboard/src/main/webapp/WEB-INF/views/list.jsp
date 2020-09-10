@@ -38,12 +38,15 @@
 
             <!-- 페이지 네비게이션 -->
             <div class="paging">
-            	<a href="#" class="prev">이전</a>
-				<c:forEach var="i" begin="1" end="${pageEnd}">                
+            <c:if test="${groupStart > 1}">
+            	<a href="/sboard/list?pg=${groupStart-1}" class="prev">이전</a>
+            </c:if>
+				<c:forEach var="i" begin="${groupStart}" end="${groupEnd}">                
                 	<a href="/sboard/list?pg=${i}" class="num ${currentPg == i ? 'current' : ''}">${i}</a>                
 				</c:forEach>
-				<a href="#" class="next">다음</a>
-                
+			<c:if test="${groupEnd < pageEnd}">
+				<a href="/sboard/list?pg=${groupEnd+1}" class="next">다음</a>
+			</c:if>
             </div>
 
             <!-- 글쓰기 버튼 -->

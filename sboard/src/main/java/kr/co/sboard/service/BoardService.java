@@ -71,6 +71,28 @@ public class BoardService {
 		return (total - start) + 1;
 	}
 	
+	// 현재 그룹 계산
+	public int getGroupCurrent(String pg) {
+		int page = Integer.parseInt(pg);
+		return (int)Math.ceil(page/10.0);
+	}
+	
+	// 그룹 시작 계산
+	public int getGroupStart(int groupCurrent) {
+		return (groupCurrent -1) * 10 + 1;
+	}
+	
+	// 그룹 끝 계산
+	public int getGroupEnd(int groupCurrent, int pageEnd) {
+		int groupEnd =  groupCurrent * 10;
+		
+		if(groupEnd > pageEnd) {
+			groupEnd = pageEnd;
+		}
+		
+		return groupEnd;
+	}
+	
 	// 파일 업로드
 	public FileVO fileUpload(HttpServletRequest req, MultipartFile file, int seq) {
 		

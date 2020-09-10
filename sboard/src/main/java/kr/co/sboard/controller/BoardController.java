@@ -36,12 +36,22 @@ public class BoardController {
 		int pageEnd = service.getPageEnd(total);
 		int count = service.getListCount(total, start);
 		
+		int groupCurrent = service.getGroupCurrent(pg);
+		int groupStart = service.getGroupStart(groupCurrent);
+		int groupEnd= service.getGroupEnd(groupCurrent, pageEnd);
+		
+		
+		
 		List<BoardVO> articles = service.selectBoards(start);
 		
 		model.addAttribute("articles", articles);
 		model.addAttribute("pageEnd", pageEnd);
 		model.addAttribute("currentPg", pg);
 		model.addAttribute("count", count);
+		
+		model.addAttribute("groupCurrent", groupCurrent);
+		model.addAttribute("groupStart", groupStart);
+		model.addAttribute("groupEnd", groupEnd);
 		
 		return "/list";
 	}

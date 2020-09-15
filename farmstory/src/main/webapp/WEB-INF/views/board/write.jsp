@@ -4,8 +4,8 @@
 <section id="board" class="write">
     <h3>글쓰기</h3>
     <article>
-        <form action="/farmstory/board/write" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="uid" value="${member.uid}" />
+        <form action="/farmstory/board/write?group=${group}&cate=${cate}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="uid" value="${user.uid}" />
             <table>
                 <tr>
                     <td>제목</td>

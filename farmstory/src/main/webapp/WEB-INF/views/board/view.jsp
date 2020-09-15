@@ -7,28 +7,28 @@
     <table>
         <tr>
             <td>제목</td>
-            <td><input type="text" name="title" value="${boardVO.title}" readonly/></td>
+            <td><input type="text" name="title" value="${board.title}" readonly/></td>
         </tr>
         <c:if test="${boardVO.file == 1 }">
         <tr>
             <td>첨부파일</td>
             <td>
-                <a href="/sboard/file/download?newName=${boardVO.newName}&oldName=${boardVO.oldName}">${boardVO.oldName}</a>
-                <span>${boardVO.download}회 다운로드</span>
+                <a href="/farmstory/file/download?newName=${board.newName}&oldName=${board.oldName}">${board.oldName}</a>
+                <span>${board.download}회 다운로드</span>
             </td>
         </tr>
         </c:if>
         <tr>
             <td>내용</td>
             <td>
-                <textarea name="content" readonly>${boardVO.content}</textarea>
+                <textarea name="content" readonly>${board.content}</textarea>
             </td>
         </tr>
     </table>
     <div>
         <a href="/farmstory/board/delete" class="btnDelete">삭제</a>
-        <a href="/farmstory/board/modify?group=${group}&cate=${cate}" class="btnModify">수정</a>
-        <a href="/farmstory/board/list?group=${group}&cate=${cate}" class="btnList">목록</a>
+        <a href="/farmstory/board/modify?group=${group}&cate=${cate}&seq=${seq}" class="btnModify">수정</a>
+        <a href="/farmstory/board/list?group=${group}&cate=${cate}&seq=${seq}" class="btnList">목록</a>
     </div>  
     
     <!-- 댓글리스트 -->

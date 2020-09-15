@@ -3,9 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.user">
-
-	<!-- 
-	<select id="SELECT_TERMS" resultType="kr.co.sboard.vo.TermsVO">
+	
+	<select id="SELECT_TERMS" resultType="kr.co.farmstory.vo.TermsVO">
 		SELECT * FROM `JBOARD_TERMS`;
 	</select>
 	
@@ -23,16 +22,15 @@
 			`regip`=#{regip}, 		
 			`rdate`=NOW();		
 	</insert>
-
+	
 	<select id="SELECT_USER_COUNT" resultType="int">
 		SELECT COUNT(*) FROM `JBOARD_MEMBER`
 		WHERE `uid`=#{uid};
 	</select>
 	
-	<select id="SELECT_USER" resultType="kr.co.sboard.vo.UserVO">
+	<select id="SELECT_USER" resultType="kr.co.farmstory.vo.UserVO">
 		SELECT * FROM `JBOARD_MEMBER`
-		WHERE `uid`=#{uid} AND `PASS`=PASSWORD(#{pass});
+		WHERE `uid`=#{uid} AND `pass`=PASSWORD(#{pass});
 	</select>
-	 -->
 	 
 </mapper>

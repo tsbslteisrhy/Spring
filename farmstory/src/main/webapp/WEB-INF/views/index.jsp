@@ -1,5 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="./_header.jsp" %>
+<script>
+	$(function(){
+
+		var url1 = '/farmstory/index/latest?cate=grow';
+		var url2 = '/farmstory/index/latest?cate=school';
+		var url3 = '/farmstory/index/latest?cate=croptalk';
+		
+		$.get(url1, function(result){
+			//alert('result1:'+result[0].seq)
+			
+			
+		});
+
+		$.get(url2, function(result){
+			//alert('result2:'+result[0].seq)
+		});
+
+		$.get(url3, function(result){
+			//alert('result3:'+result[0].seq)
+		});
+	});
+	
+</script>
 <main>
     <div class="slider">
         
@@ -27,93 +51,33 @@
             <img src="/farmstory/img/main_latest1_tit.png" alt="텃밭가꾸기"/>
             <img src="/farmstory/img/main_latest1_img.jpg" alt="이미지1">
             <table border="0">
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
+            		<tr>
+            			<td>></td>
+                    	<td>${board.title}</td>
+                    	<td>${board.rdate.substring(2, 10)}</td>
+            		</tr>
             </table>
         </div>
         <div>
             <img src="/farmstory/img/main_latest2_tit.png" alt="귀농학교"/>
             <img src="/farmstory/img/main_latest2_img.jpg" alt="이미지2">
             <table border="0">
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
+            		<tr>
+            			<td>></td>
+                    	<td>${board.title}</td>
+                    	<td>${board.rdate.substring(2, 10)}</td>
+            		</tr>
             </table>
         </div>
         <div>
             <img src="/farmstory/img/main_latest3_tit.png" alt="농작물이야기"/>
             <img src="/farmstory/img/main_latest3_img.jpg" alt="이미지3">
             <table border="0">
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td>안녕하세요. 반갑습니다.</td>
-                    <td>20-05-14</td>
-                </tr>
+            		<tr>
+            			<td>></td>
+                    	<td>${board.title}</td>
+                    	<td>${board.rdate.substring(2, 10)}</td>
+            		</tr>
             </table>
         </div>                
     </div>

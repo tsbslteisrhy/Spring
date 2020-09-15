@@ -180,6 +180,14 @@
 		    <version>1.4</version>
 		</dependency>
 		
+		<!-- 추가 필수 라이브러리 11 : lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>
+			
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

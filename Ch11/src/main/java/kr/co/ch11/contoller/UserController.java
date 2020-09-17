@@ -36,6 +36,6 @@ public class UserController {
 		List<UserVO> users = service.selectUsers();
 		model.addAttribute("users", users);
 		
-		return "/user/lsit";
+		return "/user/list";
 	}
 }

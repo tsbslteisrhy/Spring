@@ -21,8 +21,8 @@
 			<td>[[${user.hp}]]</td>
 			<td>[[${user.age}]]</td>
 			<td>
-				<a th:href="@{/user/modify?uid=${user.uid}}">수정</a>
-				<a th:href="@{/user/delete?uid=${user.uid}}">삭제</a>
+				<a th:href="@{/user/modify(uid=${user.uid})}">수정</a>
+				<a th:href="@{/user/delete(uid=${user.uid})}">삭제</a>
 			</td>
 		</tr>
 	</table>

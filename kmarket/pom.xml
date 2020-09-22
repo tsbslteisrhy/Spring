@@ -75,6 +75,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- 필수 라이브러리 1 : thymeleaf-layout-dialect -->
+		<dependency>
+		    <groupId>nz.net.ultraq.thymeleaf</groupId>
+		    <artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

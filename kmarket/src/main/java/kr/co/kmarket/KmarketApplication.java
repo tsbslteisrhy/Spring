@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("kr.co.kmarket.dao")
+@MapperScan("kr.co.kmarket")
 public class KmarketApplication {
 
 	public static void main(String[] args) {

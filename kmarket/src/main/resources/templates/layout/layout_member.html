@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>케이마켓::회원가입 선택</title>
+    <link rel="stylesheet" th:href="@{/css/member.css}">
+</head>
+<body>
+    <div id="member-wrapper">
+        <header>
+            <a href="#"><img th:src="@{/img/header_logo.png}" alt=""></a>
+        </header>
+        <main>
+            
+            <!-- member content 시작 -->
+	        <div layout:fragment="content"></div>
+	        <!-- member content 끝 -->
+            
+        </main>        
+    	
+    	<!-- footer 시작 -->
+		<footer th:include="/fragments/_footer.html::_footer"></footer>
+		<!-- footer 끝 -->
+		
+    </div>    
+</body>
+</html>

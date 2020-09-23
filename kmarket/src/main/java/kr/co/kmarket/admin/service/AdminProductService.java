@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket.admin.dao.AdminProductDao;
+import kr.co.kmarket.admin.persistence.AdminProductsRepo;
 import kr.co.kmarket.vo.ProductsVo;
 
 @Service
@@ -13,17 +14,19 @@ public class AdminProductService {
 
 	@Autowired
 	private AdminProductDao dao;
+	@Autowired
+	private AdminProductsRepo repo;
 	
 	public void insertProduct(ProductsVo vo) {
-		dao.insertProduct(vo);
+		repo.save(vo);
 	} 
 	
 	public ProductsVo selectProduct() {
 		return dao.selectProduct();
 	}
 	
-	public List<ProductsVo> selectProducts() {
-		return dao.selectProducts();
+	public List<ProductsVo> selectProducts(int start) {
+		return dao.selectProducts(start);
 	} 
 	
 	public void updateProduct() {
@@ -65,28 +68,6 @@ public class AdminProductService {
 	// list count 계산
 	public int getListCount(int total, int start) {
 		return (total - start) + 1;
-	}
-	
-	// 현재 그룹 계산
-	public int getGroupCurrent(String pg) {
-		int page = Integer.parseInt(pg);
-		return (int)Math.ceil(page/10.0);
-	}
-	
-	// 그룹 시작 계산
-	public int getGroupStart(int groupCurrent) {
-		return (groupCurrent -1) * 10 + 1;
-	}
-	
-	// 그룹 끝 계산
-	public int getGroupEnd(int groupCurrent, int pageEnd) {
-		int groupEnd =  groupCurrent * 10;
-		
-		if(groupEnd > pageEnd) {
-			groupEnd = pageEnd;
-		}
-		
-		return groupEnd;
 	}
 	
 }

@@ -57,13 +57,15 @@
 	        <input type="button" value="선택삭제" />                          
 	
 	        <div class="paging">
-	            <span class="prev" th:if="${groupStart > 1}">
+	            <span class="prev">
 	                <a href="#"><&nbsp;이전</a>
 	            </span>
-	            <span class="num" th:each="i: ${#numbers.sequence(${groupStart}, ${groupEnd})}">
-	                <a href="#" class="on">1</a>
+	            <span class="num">
+	                <a th:href="@{/admin/product/list(pg=${num})}"
+	                th:each="num:${#numbers.sequence(1, pageEnd)}"
+	                th:class="${#strings.equals(num, currentPg) ? 'on' : ''}">[[${num}]]</a>
 	            </span>
-	            <span class="next" th:if="${groupEnd < pageEnd}">
+	            <span class="next">
 	                <a href="#">다음&nbsp;></a>
 	            </span>
 	            </div>

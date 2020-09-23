@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.kmarket.admin.dao.AdminProductDao">
  
  	<select id="selectProducts" resultType="kr.co.kmarket.vo.ProductsVo">
-		SELECT * FROM `km_products`;
+		SELECT * FROM `km_products` LIMIT #{start}, 10;
 	</select>
 	
 	<select id="selectCountProducts" resultType="int">
@@ -13,11 +13,6 @@
 	</select>
  
  <!-- 
-	
-	<insert id="insertUser">
-		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});
-	</insert>
-	
 	<select id="selectUser" resultType="kr.co.ch11.vo.UserVO">
 		SELECT * FROM `USER3` WHERE `uid`=#{uid}; 
 	</select>

@@ -10,11 +10,15 @@ import kr.co.kmarket.vo.ProductsVo;
 public interface AdminProductDao {
 
 	public void insertProduct(ProductsVo vo); 
+	
 	public ProductsVo selectProduct(); 
-	public List<ProductsVo> selectProducts(); 
-	public void updateProduct(); 
-	public void deleteProduct();
+	
+	public List<ProductsVo> selectProducts(int start);
 	
 	public int selectCountProducts();
+	
+	public void updateProduct(); 
+	
+	public void deleteProduct();
 	
 }

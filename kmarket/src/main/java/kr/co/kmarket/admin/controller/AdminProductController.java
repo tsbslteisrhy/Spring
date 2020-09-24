@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,6 +34,21 @@ public class AdminProductController {
 	@Autowired
 	private AdminCategory2Repo cate2Repo;
 	
+	@GetMapping("/admin/product/search")
+	public String search(String pg, String keyword, String opt, Model model) {
+		
+		int start = service.getLimitStart(pg);
+		int total = service.selectCountProducts();
+		int pageEnd = service.getPageEnd(total);
+		
+		List<ProductsVo> products = service.selectProductsBySearch(start, opt, keyword);
+		model.addAttribute("products", products);
+		model.addAttribute("pageEnd", pageEnd);
+		model.addAttribute("currentPg", pg);
+		
+		return "/admin/product/list";
+	}
+	
 	@GetMapping("/admin/product/list")
 	public String list(Model model, String pg) {
 		
@@ -56,26 +72,12 @@ public class AdminProductController {
 	
 	@PostMapping("/admin/product/register")
 	public String register(ProductsVo vo, HttpServletRequest req) throws Exception {
-		vo.setThumb1(vo.getFile1().getOriginalFilename());
-		vo.setThumb2(vo.getFile2().getOriginalFilename());
-		vo.setThumb3(vo.getFile3().getOriginalFilename());
-		vo.setDetail(vo.getFile4().getOriginalFilename());
 		
 		vo.setIp(req.getRemoteAddr());
 		vo.setRdate(LocalDateTime.now().toString());
 		
+		vo = service.uploadThumb(vo);
 		service.insertProduct(vo);
-		
-		// 파일 업로드
-		MultipartFile f1 = vo.getFile1();
-		MultipartFile f2 = vo.getFile2();
-		MultipartFile f3 = vo.getFile3();
-		MultipartFile f4 = vo.getFile4();
-		
-		//f1.transferTo(new File("/thumb/file1.jpg"));
-		//f2.transferTo(new File("/thumb/file2.jpg"));
-		//f3.transferTo(new File("/thumb/file3.jpg"));
-		//f4.transferTo(new File("/thumb/file4.jpg"));
 		
 		return "redirect:/admin/product/register";
 	}

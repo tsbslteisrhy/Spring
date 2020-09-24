@@ -6,19 +6,22 @@
 	    <nav>
 	        <h3>상품목록</h3>
 	        <p>
-	            HOME > 상품관리 > <strong>상품목록</strong>
+	            HOME > 상품관리 > <strong><a th:href="@{/admin/product/list}">상품목록</a></strong>
 	        </p>
 	    </nav>
 	    <!-- 상품목록 컨텐츠 시작 -->                                
 	    <section>
 	        <div>
-	            <select name="search">
-	                <option value="search1">상품명</option>
-	                <option value="search1">상품코드</option>
-	                <option value="search1">제조사</option>
-	                <option value="search1">판매자</option>                                    
-	            </select>
-	            <input type="text" name="search">
+	        	<form th:action="@{/admin/product/search}">
+		            <select name="opt">
+		                <option value="name">상품명</option>
+		                <option value="code">상품코드</option>
+		                <option value="company">제조사</option>
+		                <option value="seller">판매자</option>                                    
+		            </select>
+		            <input type="text" name="keyword">
+		            <input type="submit" class="search" value="검색"/>
+	            </form>
 	        </div>
 	        <table>
 	            <tr>
@@ -37,7 +40,7 @@
 	
 	            <tr th:each="product:${products}">
 	                <td><input type="checkbox" name="상품코드"/></td>
-	                <td><img th:src="@{${product.thumb1}}" class="thumb"></td>
+	                <td><img th:src="@{'/thumb/'+${product.cate1}+'/'+${product.cate2}+'/'+${product.thumb1}}" class="thumb"></td>
 	                <td>[[${product.code}]]</td>
 	                <td>[[${product.name}]]</td>
 	                <td>[[${product.price}]]</td>

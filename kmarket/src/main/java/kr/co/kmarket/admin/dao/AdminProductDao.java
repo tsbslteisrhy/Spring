@@ -17,6 +17,8 @@ public interface AdminProductDao {
 	
 	public int selectCountProducts();
 	
+	public List<ProductsVo> selectProductsBySearch(int start, String opt, String keyword);
+	
 	public void updateProduct(); 
 	
 	public void deleteProduct();

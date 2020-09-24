@@ -29,6 +29,7 @@ public class ProductsVo {
 	private String name;
 	private String descript;
 	private String company;
+	private String seller;
 	private int price;
 	private int discount;
 	private int point;

@@ -34,6 +34,12 @@ public class AdminProductController {
 	@Autowired
 	private AdminCategory2Repo cate2Repo;
 	
+	@ResponseBody
+	@GetMapping("/admin/product/delete")
+	public int delete(String[] codes) {
+		return service.deleteProduct(codes);
+	}
+	
 	@GetMapping("/admin/product/search")
 	public String search(String pg, String keyword, String opt, Model model) {
 		

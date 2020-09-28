@@ -3,6 +3,60 @@
 	  layout:decorate="/layout/layout_admin.html">
 	  
 	<section id="admin-product-list" layout:fragment="content">
+		<script>
+		$(function(){
+			
+			var checkAll = $('input[name=all]');
+			var btnCheckDel = $('#btnCheckDel');
+			
+			btnCheckDel.click(function(){
+				
+				var codes = [];
+				
+				// 체크한 체크박스 value 값 추출
+				$('input[name=chkProduct]:checked').each(function(){
+					var code = $(this).val();
+					codes.push(code);
+				});
+				
+				if(codes.length != 0){
+					
+					var param = {'codes': codes};
+					
+					$.ajax({
+						url: '/kmarket/admin/product/delete',
+						type: 'get',
+						data: param,
+						traditional: true,
+						dataType: 'text',
+						success: function(data){
+							alert("삭제 상품 개수 : "+data);
+							location.replace('/kmarket/admin/product/list');
+						}
+					});
+				}else{
+					alert('상품을 선택하세요.');
+				}
+				
+				
+			});
+			
+			checkAll.click(function(){
+
+				var isChecked = $(this).is(':checked');
+				
+				if(isChecked){
+					// 체크
+					$('input[name=chkProduct]').attr('checked', true);
+				}else{
+					// 체크 해제
+					$('input[name=chkProduct]').attr('checked', false);
+				}
+				
+			});
+			
+		});
+		</script>
 	    <nav>
 	        <h3>상품목록</h3>
 	        <p>
@@ -39,7 +93,7 @@
 	            </tr>
 	
 	            <tr th:each="product:${products}">
-	                <td><input type="checkbox" name="상품코드"/></td>
+	                <td><input type="checkbox" name="chkProduct" th:value="${product.code}"/></td>
 	                <td><img th:src="@{'/thumb/'+${product.cate1}+'/'+${product.cate2}+'/'+${product.thumb1}}" class="thumb"></td>
 	                <td>[[${product.code}]]</td>
 	                <td>[[${product.name}]]</td>
@@ -57,7 +111,7 @@
 	            
 	        </table>
 	
-	        <input type="button" value="선택삭제" />                          
+	        <input type="button" id="btnCheckDel" value="선택삭제" />                          
 	
 	        <div class="paging">
 	            <span class="prev">

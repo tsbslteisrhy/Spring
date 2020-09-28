@@ -21,6 +21,6 @@ public interface AdminProductDao {
 	
 	public void updateProduct(); 
 	
-	public void deleteProduct();
+	public int deleteProduct(String[] codes);
 	
 }

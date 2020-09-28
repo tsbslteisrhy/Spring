@@ -45,8 +45,8 @@ public class AdminProductService {
 		dao.updateProduct();
 	}
 	
-	public void deleteProduct() {
-		dao.deleteProduct();
+	public int deleteProduct(String[] codes) {
+		return dao.deleteProduct(codes);
 	}
 	
 	// Limit start 계산

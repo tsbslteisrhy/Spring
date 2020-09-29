@@ -4,40 +4,44 @@
 
 	<section layout:fragment="content">
 		<script>
-			// 추천, 최신, 할인 상태변수
-			var isCompleteReco = false; 
-			var isCompleteLate = false; 
-			var isCompleteDisc = false;
-			
-			$(document).ready(function(){
-				$(window).scroll(function(){
-					var pos = $(this).scrollTop();
-					//console.log('pos : '+pos);
-					
-					if(pos >= 200 && !isCompleteReco) {
-						isCompleteReco = true;
-						getProducts('/kmarket/main/recommend');
-					}
-				});// scroll end
-				
-				function getProducts(url){
-					$.ajax({
-						url: url,
-						type: 'get',
-						dataType: 'json',
-						success: function(data){
-							
-							$('.recommend > img[alt=loading]').remove();
-							
-							$.for(var item in data){
-								var dom = $('.hit > article:eq(0)').clone();
-								$('.recommend').append(dom);
-							}
+ 		// 추천, 최신, 할인 상태변수
+ 		var isCompleteReco = false;
+ 		var isCompleteLate = false;
+ 		var isCompleteDisc = false;
+
+ 		$(document).ready(function(){
+
+ 			$(window).scroll(function(){
+
+ 				var pos = $(this).scrollTop();
+
+ 				if(pos >= 200 && !isCompleteReco){
+ 					isCompleteReco = true;
+ 					getProducts('/kmarket/main/recommend');
+ 				}
+
+ 			});// scroll end
+
+ 			function getProducts(url){
+ 				$.ajax({
+					url: url,
+					type: 'get',
+					dataType: 'json',
+					success: function(data){
+
+						$('.recommend > img[alt=loading]').remove();
+
+						for(var item in data){
+							var dom = $('.hit > article:eq(0)').clone();
+							$('.recommend').append(dom);
 						}
-					});
-				}
-			}
-			});
+
+
+					} 						
+				}); 
+ 			}
+
+ 		});// jquery end
 		</script>
                 <!-- 슬라이더 영역 -->
                 <section class="slider">

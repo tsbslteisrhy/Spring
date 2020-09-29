@@ -3,6 +3,42 @@
 	  layout:decorate="/layout/layout_main.html">
 
 	<section layout:fragment="content">
+		<script>
+			// 추천, 최신, 할인 상태변수
+			var isCompleteReco = false; 
+			var isCompleteLate = false; 
+			var isCompleteDisc = false;
+			
+			$(document).ready(function(){
+				$(window).scroll(function(){
+					var pos = $(this).scrollTop();
+					//console.log('pos : '+pos);
+					
+					if(pos >= 200 && !isCompleteReco) {
+						isCompleteReco = true;
+						getProducts('/kmarket/main/recommend');
+					}
+				});// scroll end
+				
+				function getProducts(url){
+					$.ajax({
+						url: url,
+						type: 'get',
+						dataType: 'json',
+						success: function(data){
+							
+							$('.recommend > img[alt=loading]').remove();
+							
+							$.for(var item in data){
+								var dom = $('.hit > article:eq(0)').clone();
+								$('.recommend').append(dom);
+							}
+						}
+					});
+				}
+			}
+			});
+		</script>
                 <!-- 슬라이더 영역 -->
                 <section class="slider">
                     <ul>
@@ -16,284 +52,29 @@
                 <!-- 히트상품 영역 -->
                 <section class="hit">
                     <h3><span>히트상품</span></h3>
-                    <article>
+                    <article th:each="item:${hitList}">
                         <a href="#">
                             <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
+                              <img th:src="@{'/thumb/'+${item.cate1}+'/'+${item.cate2}+'/'+${item.thumb1}}" alt="t1">
                             </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
+                            <h2>[[${item.name}]]</h2>
+                            <p>[[${item.descript}]]</p>
                             <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
+                              <del>[[${#numbers.formatInteger(item.price, 3, 'COMMA')}]]</del>
+                              <span>[[${item.discount}]]%</span>
                             </div>
                             <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
+                              <ins>[[${#numbers.formatInteger(item.salePrice, 3, 'COMMA')}]]</ins>
+                              <span>[[${#numbers.formatInteger(item.delivery, 3, 'COMMA')}]]</span>
                             </div>
                         </a>
                     </article>
-
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t1.jpg" alt="t1">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    
                 </section>
+                
                 <!-- 추천상품 영역 -->
                 <section class="recommend">
                     <h3><span>추천상품</span></h3>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="#">
-                            <div class="thumb">
-                              <img src="./img/thumb-sample-t2.jpg" alt="t2">
-                            </div>
-                            <h2>베이직 기모 레글런 차콜레드2 차콜레드2</h2>
-                            <p>신상 긴팔 티셔츠/남자옷 무지티 티셔츠/남자옷 무지티 티셔츠</p>
-                            <div class="org_price">
-                              <del>30,000</del>
-                              <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                              <ins>27,000</ins>
-                              <span>무료배송</span>
-                            </div>
-                        </a>
-                    </article>
+                    <img style="display:block;margin:0 auto;" src="./img/loading.gif" alt="loading">
                 </section>
                 <!-- 최신상품 영역 -->
                 <section class="new">

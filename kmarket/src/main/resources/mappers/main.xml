@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kmarket.dao.MainDao">
+	<!-- 
+	<resultMap type="Category1Vo" id="Cate1List">
+		<result column="code1" property="code1"/>
+		<result column="title" property="title"/>
+	</resultMap>
+	
+	<resultMap type="Category2Vo" id="Cate2List">
+		<result column="code1" property="code1"/>
+		<result column="code2" property="code2"/>
+		<result column="title" property="title"/>
+		<collection property="code1" resultMap="Category1Vo"></collection>
+	</resultMap>
+	
+	<select id="selectCate1" parameterType="String" resultMap="Cate2List">
+		SELECT c1.`code1`, c2.`code2`, c1.`title` AS c1Tit, c2.`title` AS c2Tit
+		FROM `km_category1` AS c1
+		JOIN `km_category2` AS c2
+		ON c1.code1 = c2.code1
+		ORDER BY c1.`code1`, c2.`code2`;
+	</select>
+	
+	<select id="selectCate1" resultType="kr.co.kmarket.vo.Category1Vo">
+		SELECT c1.`code1`, c2.`code2`, c1.`title` AS c1Tit, c2.`title` AS c2Tit
+		FROM `km_category1` AS c1
+		JOIN `km_category2` AS c2
+		ON c1.code1 = c2.code1
+		ORDER BY c1.`code1`, c2.`code2`;
+	</select>
+	-->
+	
+	<select id="selectCate1" resultType="kr.co.kmarket.vo.Category1Vo">
+		SELECT * FROM `km_category1`;
+	</select>
+
+	<select id="selectHitProduct" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT *, Floor(price*(1-discount/100)) AS salePrice 
+		FROM `km_products` 
+		ORDER BY `hit` DESC 
+		LIMIT 8;
+	</select>
+	
+	<select id="selectBestProduct" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT *, Floor(price*(1-discount/100)) AS salePrice 
+		FROM `km_products` 
+		ORDER BY `sold` DESC 
+		LIMIT 5;
+	</select>
+	
+	<select id="selectRecProduct" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT *, Floor(price*(1-discount/100)) AS salePrice 
+		FROM `km_products` 
+		ORDER BY `score` DESC 
+		LIMIT 8;
+	</select>
+ <!-- 
+	
+	<insert id="insertUser">
+		INSERT INTO `USER3` VALUES (#{uid}, #{name}, #{hp}, #{age});
+	</insert>
+	
+	<select id="selectUser" resultType="kr.co.ch11.vo.UserVO">
+		SELECT * FROM `USER3` WHERE `uid`=#{uid}; 
+	</select>
+	
+	<select id="selectUsers" resultType="kr.co.ch11.vo.UserVO">
+		SELECT * FROM `USER3`;
+	</select>
+	
+	<update id="updateUser">
+		UPDATE `USER3` SET 
+		`name`=#{name},
+		`hp`=#{hp},
+		`age`=#{age} 
+		WHERE `uid`=#{uid};
+	</update>
+	
+	<delete id="deleteUser">
+		DELETE FROM `USER3` WHERE `uid`=#{uid};
+	</delete>
+	 -->
+
+</mapper>

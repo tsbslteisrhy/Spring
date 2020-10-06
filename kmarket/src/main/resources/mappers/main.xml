@@ -3,38 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.kmarket.dao.MainDao">
-	<!-- 
-	<resultMap type="Category1Vo" id="Cate1List">
-		<result column="code1" property="code1"/>
-		<result column="title" property="title"/>
+
+	<resultMap id="categoriesMap" type="kr.co.kmarket.vo.CategoriesVo">
+		<result property="code1" column="code1"/>
+		<result property="title" column="tit1"/>
+		
+		<collection property="cate2List" ofType="kr.co.kmarket.vo.Category2Vo">
+			<id property="seq" column="seq"/>
+			<result property="code1" column="code1"/>
+			<result property="code2" column="code2"/>
+			<result property="title" column="tit2"/>
+		</collection>
 	</resultMap>
 	
-	<resultMap type="Category2Vo" id="Cate2List">
-		<result column="code1" property="code1"/>
-		<result column="code2" property="code2"/>
-		<result column="title" property="title"/>
-		<collection property="code1" resultMap="Category1Vo"></collection>
-	</resultMap>
-	
-	<select id="selectCate1" parameterType="String" resultMap="Cate2List">
-		SELECT c1.`code1`, c2.`code2`, c1.`title` AS c1Tit, c2.`title` AS c2Tit
+	<select id="selectCategories" resultMap="categoriesMap">
+		SELECT c1.`code1`, c2.`code2`, c1.`title` AS tit1, c2.`title` AS tit2
 		FROM `km_category1` AS c1
 		JOIN `km_category2` AS c2
 		ON c1.code1 = c2.code1
 		ORDER BY c1.`code1`, c2.`code2`;
-	</select>
-	
-	<select id="selectCate1" resultType="kr.co.kmarket.vo.Category1Vo">
-		SELECT c1.`code1`, c2.`code2`, c1.`title` AS c1Tit, c2.`title` AS c2Tit
-		FROM `km_category1` AS c1
-		JOIN `km_category2` AS c2
-		ON c1.code1 = c2.code1
-		ORDER BY c1.`code1`, c2.`code2`;
-	</select>
-	-->
-	
-	<select id="selectCate1" resultType="kr.co.kmarket.vo.Category1Vo">
-		SELECT * FROM `km_category1`;
 	</select>
 
 	<select id="selectHitProduct" resultType="kr.co.kmarket.vo.ProductsVo">
@@ -55,6 +42,20 @@
 		SELECT *, Floor(price*(1-discount/100)) AS salePrice 
 		FROM `km_products` 
 		ORDER BY `score` DESC 
+		LIMIT 8;
+	</select>
+	
+	<select id="selectNewProduct" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT *, Floor(price*(1-discount/100)) AS salePrice 
+		FROM `km_products` 
+		ORDER BY `rdate` DESC 
+		LIMIT 8;
+	</select>
+
+	<select id="selectDiscountProduct" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT *, Floor(price*(1-discount/100)) AS salePrice 
+		FROM `km_products` 
+		ORDER BY `discount` DESC 
 		LIMIT 8;
 	</select>
  <!-- 

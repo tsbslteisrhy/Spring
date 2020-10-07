@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kmarket.dao.ShopDao">
+ 
+ 	<select id="selectProducts" resultType="kr.co.kmarket.vo.ProductsVo">
+		SELECT *, Floor(price*(1-discount/100)) AS salePrice FROM `km_products`
+		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2}
+		<if test="sort == 1">ORDER BY `sold` DESC</if>
+		<if test="sort == 2">ORDER BY `price` ASC</if>
+		<if test="sort == 3">ORDER BY `price` DESC</if>
+		<if test="sort == 4">ORDER BY `score` DESC</if>
+		<if test="sort == 5">ORDER BY `review` DESC</if>
+		<if test="sort == 6">ORDER BY `rdate` DESC</if>
+	</select>
+ 
+ <!-- 
+	<select id="selectUser" resultType="kr.co.ch11.vo.UserVO">
+		SELECT * FROM `USER3` WHERE `uid`=#{uid}; 
+	</select>
+	
+	<select id="selectUsers" resultType="kr.co.ch11.vo.UserVO">
+		SELECT * FROM `USER3`;
+	</select>
+	
+	<update id="updateUser">
+		UPDATE `USER3` SET 
+		`name`=#{name},
+		`hp`=#{hp},
+		`age`=#{age} 
+		WHERE `uid`=#{uid};
+	</update>
+	 -->
+
+</mapper>

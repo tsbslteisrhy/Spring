@@ -2,6 +2,8 @@ package kr.co.kmarket.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +22,15 @@ public class MainController {
 	private MainService service;
 	
 	@GetMapping(value={"/", "/index"})
-	public String index(Model model) {
+	public String index(Model model, HttpSession sess) {
 		List<CategoriesVo> cate1List = service.selectCategories();
 		List<ProductsVo> hitList = service.selectHitProduct();
 		List<ProductsVo> bestList = service.selectBestProduct();
 		
 		//System.out.println("길이1 : "+cate1List.size());
 		//System.out.println("길이2 : "+cate1List.get(0).getCate2List().size());
-		model.addAttribute("cate1List", cate1List);
+		sess.setAttribute("cate1List", cate1List);
+		
 		model.addAttribute("hitList", hitList);
 		model.addAttribute("bestList", bestList);
 		

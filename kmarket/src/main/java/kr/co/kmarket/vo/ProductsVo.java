@@ -38,6 +38,7 @@ public class ProductsVo {
 	private int delivery;
 	private int hit;
 	private int score;
+	private int review;
 	private String thumb1;
 	private String thumb2;
 	private String thumb3;
